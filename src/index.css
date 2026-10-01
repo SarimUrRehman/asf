@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Orbitron", sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #000000;
+    color: #ffffff;
+    scroll-behavior: smooth;
+  }
+
+  /* Custom Dark & Chrome Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #050505;
+    border-left: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #9ca3af 0%, #ffffff 50%, #6b7280 100%);
+    border-radius: 9999px;
+    border: 2px solid #050505;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #e5e7eb 0%, #ffffff 50%, #9ca3af 100%);
+  }
+}
+
+/* Metallic Chrome Text Gradient */
+.text-chrome {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f3f4f6 28%,
+    #9ca3af 52%,
+    #e5e7eb 75%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-chrome-subtle {
+  background: linear-gradient(135deg, #ffffff 0%, #d1d5db 45%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Primary Chrome Button */
+.btn-chrome {
+  background: linear-gradient(135deg, #ffffff 0%, #d1d5db 48%, #f3f4f6 100%);
+  color: #000000;
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition:
+    transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 180ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-chrome:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 32px rgba(224, 242, 254, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  filter: brightness(1.04);
+}
+
+.btn-chrome:active {
+  transform: translateY(0);
+}
+
+/* Glassmorphism Showroom Card */
+.glass-panel {
+  background: linear-gradient(
+    160deg,
+    rgba(24, 24, 27, 0.72) 0%,
+    rgba(10, 10, 12, 0.88) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-panel-hover {
+  transition:
+    transform 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(224, 242, 254, 0.45);
+  box-shadow:
+    0 18px 40px -15px rgba(0, 0, 0, 0.85),
+    0 0 28px -6px rgba(186, 230, 253, 0.14);
+}
+
+/* Shine Sweep Effect (Light sweeping across car paint) */
+.shine-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-sweep::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 100%
+  );
+  transform: translateX(-180%) skewX(-24deg);
+  transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.shine-sweep:hover::after {
+  transform: translateX(320%) skewX(-24deg);
+}
+
+/* Ambient Showroom Light Streak Animation */
+@keyframes streakSweep {
+  0% {
+    transform: translate3d(-35%, -10%, 0) rotate(-15deg);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate3d(15%, 5%, 0) rotate(-15deg);
+    opacity: 0.38;
+  }
+  100% {
+    transform: translate3d(-35%, -10%, 0) rotate(-15deg);
+    opacity: 0.15;
+  }
+}
+
+.animate-streak {
+  animation: streakSweep 11s ease-in-out infinite;
+}
+
+/* SVG Car Line Draw Animation */
+@keyframes carOutlineDraw {
+  0% {
+    stroke-dashoffset: 1600;
+    opacity: 0.2;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.animate-car-draw {
+  stroke-dasharray: 1600;
+  stroke-dashoffset: 0;
+  animation: carOutlineDraw 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-streak,
+  .animate-car-draw {
+    animation: none !important;
+  }
+  .shine-sweep::after {
+    transition: none !important;
+  }
+}
+

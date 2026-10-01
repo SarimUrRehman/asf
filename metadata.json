@@ -1,0 +1,6 @@
+{
+  "name": "ASF Car Detailing and Valeting",
+  "description": "Luxury Car Detailing & Valeting in North Lanarkshire & Surrounding Areas. Interior & Exterior Specialists offering Full Valets, Deep Cleans, Interior Detailing, and Exterior Detailing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
